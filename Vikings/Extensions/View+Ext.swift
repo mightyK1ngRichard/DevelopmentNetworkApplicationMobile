@@ -26,4 +26,9 @@ extension View {
                     .fill(color)
             }
     }
+    
+    var leadingAlignment: some View {
+        self
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
 }

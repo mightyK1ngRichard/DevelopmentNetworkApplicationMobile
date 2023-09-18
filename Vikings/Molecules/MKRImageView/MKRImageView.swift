@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MKRImageView: View {
     var configuration: Configuration = .clear
+    var handler: MKREmptyBlock?
     
     var body: some View {
         if let url = configuration.url {
@@ -25,6 +26,7 @@ struct MKRImageView: View {
                         configuration.imageCornerRadius,
                         configuration.imageBorderWidth
                     )
+                  
                 
             } placeholder: {
                 Placeholder()
@@ -38,7 +40,7 @@ struct MKRImageView: View {
                 Image(systemName: "photo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(edge: 30)
+                    .frame(edge: configuration.placeholderImageSize)
                     .foregroundColor(.pink.opacity(0.5))
             }
         }

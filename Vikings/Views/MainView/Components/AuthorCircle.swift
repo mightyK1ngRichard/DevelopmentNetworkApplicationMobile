@@ -10,13 +10,13 @@ import SwiftUI
 struct AuthorCircle: View {
     var username: String = .username
     var isActive: Bool = true
+    
     var imageConfiguration: MKRImageView.Configuration = .imageConfiguration
-    var handler: (() -> Void)?
+    var handler: MKREmptyBlock?
     
     var body: some View {
         Button {
             handler?()
-            
         } label: {
             VStack{
                 MKRImageView(configuration: imageConfiguration)
@@ -29,6 +29,7 @@ struct AuthorCircle: View {
                     .lineLimit(.maxLines)
             }
         }
+
     }
 }
 

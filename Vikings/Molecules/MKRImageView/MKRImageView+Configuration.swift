@@ -17,6 +17,7 @@ extension MKRImageView {
         var imageBorderWidth     : CGFloat = .zero
         var imageBorderColor     : Color? = nil
         var placeholderLineWidth : CGFloat = .zero
+        var placeholderImageSize : CGFloat = .zero
     }
 }
 
@@ -35,7 +36,8 @@ extension MKRImageView.Configuration {
             imageCornerRadius    : CGFloat = .zero,
             imageBorderWidth     : CGFloat = .zero,
             imageBorderColor     : Color? = nil,
-            placeholderLineWidth : CGFloat = .zero
+            placeholderLineWidth : CGFloat = .zero,
+            placeholderImageSize : CGFloat = .zero
         )
     }
     

@@ -22,7 +22,8 @@ extension MKRImageView.Configuration {
                 imageCornerRadius: .imageCornerRadius,
                 imageBorderWidth: .imageBorderWidth,
                 imageBorderColor: .imageBorderColor,
-                placeholderLineWidth: .placeholderLineWidth
+                placeholderLineWidth: .placeholderLineWidth,
+                placeholderImageSize: .placeholderImageSize
             )
         case let .custom(
             url,
@@ -31,7 +32,8 @@ extension MKRImageView.Configuration {
             imageCornerRadius,
             imageBorderWidth,
             imageBorderColor,
-            placeholderLineWidth
+            placeholderLineWidth,
+            placeholderImageSize
         ): return .init(
             url: url,
             mode: mode,
@@ -39,7 +41,8 @@ extension MKRImageView.Configuration {
             imageCornerRadius: imageCornerRadius,
             imageBorderWidth: imageBorderWidth,
             imageBorderColor: imageBorderColor,
-            placeholderLineWidth: placeholderLineWidth
+            placeholderLineWidth: placeholderLineWidth,
+            placeholderImageSize: placeholderImageSize
         )
         case .clear:
             return .init()
@@ -64,6 +67,7 @@ private extension CGFloat {
     static let imageCornerRadius: CGFloat = 20
     static let placeholderLineWidth: CGFloat = 2
     static let imageBorderWidth: CGFloat = 2
+    static let placeholderImageSize: CGFloat = 30
 }
 
 
