@@ -54,6 +54,7 @@ private extension DetailCityView {
                 Text("• " + (author.post ?? "iOS engineer"))
                     .font(.caption)
                     .leadingAlignment
+                    .multilineTextAlignment(.leading)
             }
             .leadingAlignment
         }
@@ -137,5 +138,6 @@ private extension CityModel {
 struct DetailCityView_Previews: PreviewProvider {
     static var previews: some View {
         DetailCityView()
+            .preferredColorScheme(.dark)
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var viewModel = MainViewModel()
+    @State private var showAlert = (show: false, message: "")
     
     var body: some View {
         NavigationStack {
@@ -22,6 +23,17 @@ struct MainView: View {
         }
         .onAppear(perform: FetchData)
         .environmentObject(viewModel)
+        .alert(isPresented: $showAlert.show) {
+            Alert(
+                title: .errorMessage,
+                message: Text(showAlert.message),
+                primaryButton: .default(
+                    .tryAgain,
+                    action: FetchData
+                ),
+                secondaryButton: .default(.ok)
+            )
+        }
     }
 }
 
@@ -90,6 +102,9 @@ private extension MainView {
 
 private extension MainView {
     func FetchData() {
+        viewModel.cityViewModel = .data
+        viewModel.authorViewModel = .data
+        
         NetworkService.shared.request(
             router: .cities,
             method: .get,
@@ -99,13 +114,24 @@ private extension MainView {
                 case .success(let city):
                     viewModel.cityViewModel = city.mapper
                 case .failure(let error):
-                    print(error)
+                    showAlert.message = error.localizedDescription
+                    showAlert.show = true
                 }
             }
-        DispatchQueue.main.async {
-            viewModel.cityViewModel = .data
-            viewModel.authorViewModel = .data
-        }
+        
+        NetworkService.shared.request(
+            router: .authors,
+            method: .get,
+            type: AuthorsEntity.self,
+            parameters: nil) { result in
+                switch result {
+                case .success(let authors):
+                    viewModel.authorViewModel = authors.mapper
+                case .failure(let error):
+                    showAlert.message = error.localizedDescription
+                    showAlert.show = true
+                }
+            }
     }
 }
 
@@ -161,6 +187,13 @@ private extension String {
     static let emptyCity = "Название отсутсвует"
 }
 
+private extension Text {
+    
+    static let errorMessage = Text("Ошибка")
+    static let tryAgain = Text("Повторить")
+    static let ok = Text("ОК")
+}
+
 private extension CGFloat {
     
     static let widthCard: CGFloat = 100
@@ -192,17 +225,13 @@ private extension CityViewModel {
     static let description = "Просто какой-то набор слов для описания такого города. Правда надо просто что-то очень много и много писать, но я не могу понять, что я ещё могу придумать для такого города. Ладно, пофиг. Крч вот тычка тычка тычка, карта карта, сююююда, мурлок и победа. СИИИИИУ"
     
     static let data = CityViewModel(cities: [
-        CityModel(id: 0, cityName: "Просто город 1", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 1, cityName: "Просто город 2", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 2, cityName: "Просто город 3", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 3, cityName: "Просто город 4", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 4, cityName: "Просто город 5", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 5, cityName: "Просто город 6", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 6, cityName: "Просто город 7", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 7, cityName: "Просто город 8", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 8, cityName: "Просто город 9", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 9, cityName: "Просто город 10", imageURL: .mockLoadingUrl, description: description),
-        CityModel(id: 10, cityName: "Просто город 11", imageURL: .mockLoadingUrl, description: nil),
+        CityModel(id: 0, cityName: "Просто город 1", imageURL: nil, description: description),
+        CityModel(id: 1, cityName: "Просто город 2", imageURL: nil, description: description),
+        CityModel(id: 2, cityName: "Просто город 3", imageURL: nil, description: description),
+        CityModel(id: 3, cityName: "Просто город 4", imageURL: nil, description: description),
+        CityModel(id: 4, cityName: "Просто город 5", imageURL: nil, description: description),
+        CityModel(id: 5, cityName: "Просто город 6", imageURL: nil, description: description),
+        CityModel(id: 6, cityName: "Просто город 7", imageURL: nil, description: description),
     ])
 }
 
@@ -210,13 +239,12 @@ private extension AuthorViewModel {
     
     static let data = AuthorViewModel(authors: [
         AuthorModel(id: 0, authorName: "mightyKingRichard", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 1, authorName: "king", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 2, authorName: "legend", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 3, authorName: "richard", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 4, authorName: "poly", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 5, authorName: "mark", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 6, authorName: "blackElshad", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 7, authorName: "aosimo", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 8, authorName: "legend", post: "Директор", imageURL: .mockLoadingUrl),
+        AuthorModel(id: 1, authorName: "king", post: "Директор", imageURL: nil),
+        AuthorModel(id: 2, authorName: "legend", post: "Директор", imageURL: nil),
+        AuthorModel(id: 3, authorName: "richard", post: "Директор", imageURL: nil),
+        AuthorModel(id: 4, authorName: "poly", post: "Директор", imageURL: nil),
+        AuthorModel(id: 5, authorName: "mark", post: "Директор", imageURL: nil),
+        AuthorModel(id: 6, authorName: "blackElshad", post: "Директор", imageURL: nil),
+        AuthorModel(id: 7, authorName: "aosimo", post: "Директор", imageURL: nil),
     ])
 }
