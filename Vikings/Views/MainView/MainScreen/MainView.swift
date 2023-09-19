@@ -69,7 +69,7 @@ private extension MainView {
                         
                     } label: {
                         CityView(
-                            cityName: city.cityName,
+                            cityName: city.cityName ?? .emptyCity,
                             imageConfiguration: .cityImageConfiguration(
                                 url: city.imageURL,
                                 imageSize: CGSize(width: cityWidth, height: 150)
@@ -90,6 +90,18 @@ private extension MainView {
 
 private extension MainView {
     func FetchData() {
+        NetworkService.shared.request(
+            router: .cities,
+            method: .get,
+            type: CitiesEntity.self,
+            parameters: nil) { result in
+                switch result {
+                case .success(let city):
+                    viewModel.cityViewModel = city.mapper
+                case .failure(let error):
+                    print(error)
+                }
+            }
         DispatchQueue.main.async {
             viewModel.cityViewModel = .data
             viewModel.authorViewModel = .data
@@ -112,7 +124,8 @@ private extension MKRImageView.Configuration {
                 imageCornerRadius: .imageCornerRadius,
                 imageBorderWidth: .zero,
                 imageBorderColor: nil,
-                placeholderLineWidth: .zero
+                placeholderLineWidth: .zero,
+                placeholderImageSize: min(CGSize.imageSize.width, 30)
             )
         )
     }
@@ -129,7 +142,8 @@ private extension MKRImageView.Configuration {
                 imageCornerRadius: .cityImageCornerRadius,
                 imageBorderWidth: .zero,
                 imageBorderColor: nil,
-                placeholderLineWidth: .cityPlaceholderLineWidth
+                placeholderLineWidth: .cityPlaceholderLineWidth,
+                placeholderImageSize:  min(imageSize.width, 25)
             )
         )
     }
@@ -140,6 +154,11 @@ private extension MKRImageView.Configuration {
 private extension CGSize {
     
     static let imageSize = CGSize(edge: 82)
+}
+
+private extension String {
+    
+    static let emptyCity = "Название отсутсвует"
 }
 
 private extension CGFloat {

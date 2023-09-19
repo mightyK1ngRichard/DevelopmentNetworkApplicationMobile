@@ -71,13 +71,14 @@ struct MKRImage_Previews: PreviewProvider {
         MKRImageView(configuration:
                 .basic(
                     kind: .custom(
-                        url: .mockLoadingUrl,
+                        url: nil,
                         mode: .fill,
                         imageSize: .init(width: 300, height: 200),
                         imageCornerRadius: 20,
                         imageBorderWidth: 2,
                         imageBorderColor: .pink,
-                        placeholderLineWidth: 2
+                        placeholderLineWidth: 2,
+                        placeholderImageSize: 30
                     )
                 )
         )

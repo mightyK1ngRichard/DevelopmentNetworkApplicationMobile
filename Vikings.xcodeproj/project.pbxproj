@@ -19,6 +19,12 @@
 		2C9665342AB7C865002B800A /* DetailCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9665332AB7C865002B800A /* DetailCityView.swift */; };
 		2C9665362AB7D2B7002B800A /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9665352AB7D2B7002B800A /* UIColor+Ext.swift */; };
 		2C9665382AB7D346002B800A /* MKRColors+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9665372AB7D346002B800A /* MKRColors+Additions.swift */; };
+		2CB0CD4C2AB93788009662CE /* CitiesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0CD4B2AB93788009662CE /* CitiesEntity.swift */; };
+		2CB0CD4E2AB93A00009662CE /* Optional+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0CD4D2AB93A00009662CE /* Optional+Ext.swift */; };
+		2CC4A6532AB86C9A0099018F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4A6522AB86C9A0099018F /* Network.swift */; };
+		2CC4A6552AB86CB00099018F /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4A6542AB86CB00099018F /* APIErrors.swift */; };
+		2CC4A6572AB86CC80099018F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4A6562AB86CC80099018F /* Router.swift */; };
+		2CC4A6592AB86D3F0099018F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4A6582AB86D3F0099018F /* String+Ext.swift */; };
 		2CD79B922AB76302005CB758 /* AuthorCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD79B912AB76302005CB758 /* AuthorCircle.swift */; };
 		2CD79B942AB7648A005CB758 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD79B932AB7648A005CB758 /* View+Ext.swift */; };
 		2CD79B972AB76DF4005CB758 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD79B962AB76DF4005CB758 /* CityView.swift */; };
@@ -44,6 +50,12 @@
 		2C9665332AB7C865002B800A /* DetailCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCityView.swift; sourceTree = "<group>"; };
 		2C9665352AB7D2B7002B800A /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		2C9665372AB7D346002B800A /* MKRColors+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKRColors+Additions.swift"; sourceTree = "<group>"; };
+		2CB0CD4B2AB93788009662CE /* CitiesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesEntity.swift; sourceTree = "<group>"; };
+		2CB0CD4D2AB93A00009662CE /* Optional+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ext.swift"; sourceTree = "<group>"; };
+		2CC4A6522AB86C9A0099018F /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		2CC4A6542AB86CB00099018F /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
+		2CC4A6562AB86CC80099018F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		2CC4A6582AB86D3F0099018F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		2CD79B912AB76302005CB758 /* AuthorCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCircle.swift; sourceTree = "<group>"; };
 		2CD79B932AB7648A005CB758 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		2CD79B962AB76DF4005CB758 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
@@ -85,6 +97,7 @@
 		2C256E942AB2423D00498901 /* Vikings */ = {
 			isa = PBXGroup;
 			children = (
+				2CC4A6512AB86C930099018F /* Network */,
 				2CD79BA12AB78EE1005CB758 /* Views */,
 				2C256E952AB2423D00498901 /* VikingsApp.swift */,
 				2C256E9B2AB2423D00498901 /* Preview Content */,
@@ -114,6 +127,8 @@
 				2C9665302AB7BE9C002B800A /* Completions.swift */,
 				2C9665352AB7D2B7002B800A /* UIColor+Ext.swift */,
 				2C9665372AB7D346002B800A /* MKRColors+Additions.swift */,
+				2CC4A6582AB86D3F0099018F /* String+Ext.swift */,
+				2CB0CD4D2AB93A00009662CE /* Optional+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -124,6 +139,24 @@
 				2C9665332AB7C865002B800A /* DetailCityView.swift */,
 			);
 			path = DetailCityView;
+			sourceTree = "<group>";
+		};
+		2CB0CD4A2AB93775009662CE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				2CB0CD4B2AB93788009662CE /* CitiesEntity.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		2CC4A6512AB86C930099018F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2CC4A6522AB86C9A0099018F /* Network.swift */,
+				2CC4A6542AB86CB00099018F /* APIErrors.swift */,
+				2CC4A6562AB86CC80099018F /* Router.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		2CD79B952AB76DBC005CB758 /* Molecules */ = {
@@ -158,6 +191,7 @@
 		2CD79BA22AB78EE8005CB758 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				2CB0CD4A2AB93775009662CE /* Entities */,
 				2CD79BA72AB79A47005CB758 /* ViewModel */,
 				2CD79BA62AB79A40005CB758 /* Components */,
 				2CD79BA52AB79A2E005CB758 /* MainScreen */,
@@ -260,16 +294,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC4A6572AB86CC80099018F /* Router.swift in Sources */,
 				2CD79BA42AB793FF005CB758 /* CGSize+Ext.swift in Sources */,
 				2CD79B942AB7648A005CB758 /* View+Ext.swift in Sources */,
+				2CB0CD4C2AB93788009662CE /* CitiesEntity.swift in Sources */,
+				2CB0CD4E2AB93A00009662CE /* Optional+Ext.swift in Sources */,
 				2CD79B9C2AB78690005CB758 /* MKRImageView+Configuration.swift in Sources */,
 				2C256E982AB2423D00498901 /* MainView.swift in Sources */,
 				2C256EA72AB242CD00498901 /* URL+Ext.swift in Sources */,
 				2CD79BA92AB79FFF005CB758 /* MainViewModel.swift in Sources */,
+				2CC4A6592AB86D3F0099018F /* String+Ext.swift in Sources */,
 				2CD79B922AB76302005CB758 /* AuthorCircle.swift in Sources */,
 				2C256EA92AB24C0500498901 /* LinearGradient+Ext.swift in Sources */,
+				2CC4A6552AB86CB00099018F /* APIErrors.swift in Sources */,
 				2C256EA42AB242A400498901 /* HikeView.swift in Sources */,
 				2C9665382AB7D346002B800A /* MKRColors+Additions.swift in Sources */,
+				2CC4A6532AB86C9A0099018F /* Network.swift in Sources */,
 				2C9665312AB7BE9C002B800A /* Completions.swift in Sources */,
 				2CD79B992AB78089005CB758 /* MKRImageView.swift in Sources */,
 				2C9665342AB7C865002B800A /* DetailCityView.swift in Sources */,

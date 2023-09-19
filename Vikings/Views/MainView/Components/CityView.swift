@@ -20,6 +20,7 @@ struct CityView: View {
                 .padding(.vertical, 5)
                 .background()
                 .cornerRadius(imageConfiguration.imageCornerRadius)
+                .lineLimit(.lineLimit)
         }
     }
 }
@@ -54,6 +55,11 @@ private extension String {
 private extension CGSize {
     
     static let imageSize = CGSize(width: 300, height: 200)
+}
+
+private extension Int {
+    
+    static let lineLimit = 1
 }
 
 private extension CGFloat {

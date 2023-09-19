@@ -26,7 +26,7 @@ struct AuthorViewModel {
 
 struct CityModel: Identifiable, Codable {
     var id          : UInt = .zero
-    var cityName    : String = ""
+    var cityName    : String? = ""
     var imageURL    : URL? = nil
     var description : String? = nil
 }

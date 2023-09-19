@@ -46,7 +46,7 @@ private extension DetailCityView {
     
     func AvatarView() -> some View {
         HStack {
-            MKRImageView(configuration: .authorImageConfiguration())
+            MKRImageView(configuration: .authorImageConfiguration(url: .mockLoadingUrl))
             VStack {
                 Text(author.authorName)
                     .font(.headline)
@@ -71,27 +71,29 @@ private extension MKRImageView.Configuration {
     ) -> Self {
         .basic(
             kind: .custom(
-                url: .mockLoadingUrl,
+                url: url,
                 mode: .fill,
                 imageSize: CGSize(width: width, height: .imageSize),
                 imageCornerRadius: .cornerRadius,
                 imageBorderWidth: .imageBorderWidth,
                 imageBorderColor: .pink,
-                placeholderLineWidth: .placeholderLineWidth
+                placeholderLineWidth: .placeholderLineWidth,
+                placeholderImageSize: min(.imageSize / 2, 30)
             )
         )
     }
     
-    static func authorImageConfiguration() -> Self {
+    static func authorImageConfiguration(url: URL?) -> Self {
         .basic(
             kind: .custom(
-                url: .mockLoadingUrl,
+                url: url,
                 mode: .fill,
                 imageSize: CGSize(edge: .authorImageSize),
                 imageCornerRadius: .authorImageCornerRadius,
                 imageBorderWidth: .zero,
                 imageBorderColor: nil,
-                placeholderLineWidth: .placeholderLineWidth
+                placeholderLineWidth: .placeholderLineWidth,
+                placeholderImageSize: .authorImageSize / 2
             )
         )
     }
@@ -125,7 +127,7 @@ private extension CityModel {
     static let data = CityModel(
         id: 0,
         cityName: "Просто город",
-        imageURL: .mockLoadingUrl,
+        imageURL: nil,
         description: "Просто какой-то набор слов для описания такого города. Правда надо просто что-то очень много и много писать, но я не могу понять, что я ещё могу придумать для такого города. Ладно, пофиг. Крч вот тычка тычка тычка, карта карта, сююююда, мурлок и победа. СИИИИИУ"
     )
 }
