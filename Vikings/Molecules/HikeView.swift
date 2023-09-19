@@ -42,7 +42,7 @@ private extension HikeView {
             }
             
         } placeholder: {
-            ProgressView()
+            ShimmeringView()
                 .frame(width: widthCard, height: heightCard)
                 .background(
                     LinearGradient.kingGradient.opacity(0.4)

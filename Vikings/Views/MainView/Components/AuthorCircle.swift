@@ -12,24 +12,18 @@ struct AuthorCircle: View {
     var isActive: Bool = true
     
     var imageConfiguration: MKRImageView.Configuration = .imageConfiguration
-    var handler: MKREmptyBlock?
     
     var body: some View {
-        Button {
-            handler?()
-        } label: {
-            VStack{
-                MKRImageView(configuration: imageConfiguration)
-                .authorBorders(isActive: isActive)
-                
-                Text(username.lowercased())
-                    .font(.caption)
-                    .foregroundColor(Color.primary)
-                    .frame(maxWidth: .widthTitle)
-                    .lineLimit(.maxLines)
-            }
+        VStack{
+            MKRImageView(configuration: imageConfiguration)
+            .authorBorders(isActive: isActive)
+            
+            Text(username.lowercased())
+                .font(.caption)
+                .foregroundColor(Color.primary)
+                .frame(maxWidth: .widthTitle)
+                .lineLimit(.maxLines)
         }
-
     }
 }
 

@@ -30,6 +30,7 @@ struct DetailCityView: View {
                             .foregroundColor(.primary)
                             .padding(.horizontal)
                             .font(.system(size: 16, design: .rounded))
+                            .leadingAlignment
                     }
                 }
                 .padding(.vertical, 10)
@@ -54,7 +55,6 @@ private extension DetailCityView {
                 Text("• " + (author.post ?? "iOS engineer"))
                     .font(.caption)
                     .leadingAlignment
-                    .multilineTextAlignment(.leading)
             }
             .leadingAlignment
         }

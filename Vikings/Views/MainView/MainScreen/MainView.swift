@@ -46,11 +46,13 @@ private extension MainView {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
                 ForEach(viewModel.authorViewModel.authors) { author in
-                    AuthorCircle(
-                        username: author.authorName,
-                        imageConfiguration: .authorImageConfiguration(url: author.imageURL)
-                    ) {
-                        print("author: \(author.id)")
+                    NavigationLink {
+                        AuthorView(author: author)
+                    } label: {
+                        AuthorCircle(
+                            username: author.authorName,
+                            imageConfiguration: .authorImageConfiguration(url: author.imageURL)
+                        )
                     }
                 }
             }
@@ -151,7 +153,7 @@ private extension MKRImageView.Configuration {
                 imageBorderWidth: .zero,
                 imageBorderColor: nil,
                 placeholderLineWidth: .zero,
-                placeholderImageSize: min(CGSize.imageSize.width, 30)
+                placeholderImageSize: .zero
             )
         )
     }

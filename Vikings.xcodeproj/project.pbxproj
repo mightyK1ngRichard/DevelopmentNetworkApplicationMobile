@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C0B7A4C2ABA3E5200023836 /* AuthorsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B7A4B2ABA3E5200023836 /* AuthorsEntity.swift */; };
+		2C0B7A4E2ABA47A400023836 /* ShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B7A4D2ABA47A400023836 /* ShimmeringView.swift */; };
+		2C0B7A512ABA532300023836 /* AuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B7A502ABA532300023836 /* AuthorView.swift */; };
 		2C256E962AB2423D00498901 /* VikingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C256E952AB2423D00498901 /* VikingsApp.swift */; };
 		2C256E982AB2423D00498901 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C256E972AB2423D00498901 /* MainView.swift */; };
 		2C256E9A2AB2423D00498901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C256E992AB2423D00498901 /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		2C0B7A4B2ABA3E5200023836 /* AuthorsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsEntity.swift; sourceTree = "<group>"; };
+		2C0B7A4D2ABA47A400023836 /* ShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringView.swift; sourceTree = "<group>"; };
+		2C0B7A502ABA532300023836 /* AuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorView.swift; sourceTree = "<group>"; };
 		2C256E922AB2423D00498901 /* Vikings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vikings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C256E952AB2423D00498901 /* VikingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VikingsApp.swift; sourceTree = "<group>"; };
 		2C256E972AB2423D00498901 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -80,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0B7A4F2ABA531700023836 /* AuthorView */ = {
+			isa = PBXGroup;
+			children = (
+				2C0B7A502ABA532300023836 /* AuthorView.swift */,
+			);
+			path = AuthorView;
+			sourceTree = "<group>";
+		};
 		2C256E892AB2423D00498901 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +180,7 @@
 				2CD79B9A2AB7867C005CB758 /* MKRImageView */,
 				2C256EA32AB242A400498901 /* HikeView.swift */,
 				2CD79B9F2AB78B65005CB758 /* ConfigurationRequirements.swift */,
+				2C0B7A4D2ABA47A400023836 /* ShimmeringView.swift */,
 			);
 			path = Molecules;
 			sourceTree = "<group>";
@@ -185,8 +198,9 @@
 		2CD79BA12AB78EE1005CB758 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2CD79BA22AB78EE8005CB758 /* MainView */,
+				2C0B7A4F2ABA531700023836 /* AuthorView */,
 				2C9665322AB7C851002B800A /* DetailCityView */,
+				2CD79BA22AB78EE8005CB758 /* MainView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,7 +318,9 @@
 				2CB0CD4E2AB93A00009662CE /* Optional+Ext.swift in Sources */,
 				2CD79B9C2AB78690005CB758 /* MKRImageView+Configuration.swift in Sources */,
 				2C256E982AB2423D00498901 /* MainView.swift in Sources */,
+				2C0B7A4E2ABA47A400023836 /* ShimmeringView.swift in Sources */,
 				2C0B7A4C2ABA3E5200023836 /* AuthorsEntity.swift in Sources */,
+				2C0B7A512ABA532300023836 /* AuthorView.swift in Sources */,
 				2C256EA72AB242CD00498901 /* URL+Ext.swift in Sources */,
 				2CD79BA92AB79FFF005CB758 /* MainViewModel.swift in Sources */,
 				2CC4A6592AB86D3F0099018F /* String+Ext.swift in Sources */,

@@ -30,13 +30,10 @@ struct MKRImageView: View {
                 
             } placeholder: {
                 Placeholder()
-                    .overlay {
-                        ProgressView()
-                    }
             }
         } else {
             ZStack {
-                Placeholder()
+                EmptyImageView()
                 Image(systemName: "photo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -52,8 +49,14 @@ struct MKRImageView: View {
 private extension MKRImageView {
     
     func Placeholder() -> some View {
+        ShimmeringView()
+            .frame(width: configuration.imageSize.width, height: configuration.imageSize.height)
+            .cornerRadius(configuration.imageCornerRadius)
+    }
+    
+    func EmptyImageView() -> some View {
         Rectangle()
-            .fill(LinearGradient.kingGradient.opacity(0.4))
+            .fill(LinearGradient.kingGradient.opacity(0.2))
             .frame(width: configuration.imageSize.width, height: configuration.imageSize.height)
             .cornerRadius(configuration.imageCornerRadius)
             .borderRectangle(
