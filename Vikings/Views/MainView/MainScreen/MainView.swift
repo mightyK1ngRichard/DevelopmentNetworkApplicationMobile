@@ -13,27 +13,20 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            GeometryReader { proxy in
-                let cityWidth = proxy.size.width  / .divider - .gridSpacer / .divider - .borderWidth * 4
-                ScrollView(showsIndicators: false) {
-                    AuthorsScroll()
-                    CitiesScroll(cityWidth)
+            if showAlert.show {
+                NotConnectedView(errorMessage: showAlert.message, handler: FetchData)
+            } else {
+                GeometryReader { proxy in
+                    let cityWidth = proxy.size.width  / .divider - .gridSpacer / .divider - .borderWidth * 4
+                    ScrollView(showsIndicators: false) {
+                        AuthorsScroll()
+                        CitiesScroll(cityWidth)
+                    }
                 }
             }
         }
         .onAppear(perform: FetchData)
         .environmentObject(viewModel)
-        .alert(isPresented: $showAlert.show) {
-            Alert(
-                title: .errorMessage,
-                message: Text(showAlert.message),
-                primaryButton: .default(
-                    .tryAgain,
-                    action: FetchData
-                ),
-                secondaryButton: .default(.ok)
-            )
-        }
     }
 }
 
@@ -104,36 +97,51 @@ private extension MainView {
 
 private extension MainView {
     func FetchData() {
-        viewModel.cityViewModel = .data
-        viewModel.authorViewModel = .data
+        let group = DispatchGroup()
         
-        NetworkService.shared.request(
-            router: .cities,
-            method: .get,
-            type: CitiesEntity.self,
-            parameters: nil) { result in
-                switch result {
-                case .success(let city):
-                    viewModel.cityViewModel = city.mapper
-                case .failure(let error):
-                    showAlert.message = error.localizedDescription
-                    showAlert.show = true
+        DispatchQueue.global(qos: .userInitiated).async {
+            group.enter()
+            NetworkService.shared.request(
+                router: .cities,
+                method: .get,
+                type: CitiesEntity.self,
+                parameters: nil) { result in
+                    switch result {
+                    case .success(let city):
+                        showAlert.show = false
+                        viewModel.cityViewModel = city.mapper
+                        group.leave()
+                    case .failure(let error):
+                        showAlert.message = error.localizedDescription
+                        showAlert.show = true
+                        group.leave()
+                    }
                 }
-            }
+        }
         
-        NetworkService.shared.request(
-            router: .authors,
-            method: .get,
-            type: AuthorsEntity.self,
-            parameters: nil) { result in
-                switch result {
-                case .success(let authors):
-                    viewModel.authorViewModel = authors.mapper
-                case .failure(let error):
-                    showAlert.message = error.localizedDescription
-                    showAlert.show = true
+        DispatchQueue.global(qos: .userInitiated).async {
+            group.enter()
+            NetworkService.shared.request(
+                router: .authors,
+                method: .get,
+                type: AuthorsEntity.self,
+                parameters: nil) { result in
+                    switch result {
+                    case .success(let authors):
+                        showAlert.show = false
+                        viewModel.authorViewModel = authors.mapper
+                        group.leave()
+                    case .failure(let error):
+                        showAlert.message = error.localizedDescription
+                        showAlert.show = true
+                        group.leave()
+                    }
                 }
-            }
+        }
+        
+        group.notify(queue: .main) {
+            print("Get both")
+        }
     }
 }
 

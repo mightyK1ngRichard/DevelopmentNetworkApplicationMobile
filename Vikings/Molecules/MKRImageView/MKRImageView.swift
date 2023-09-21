@@ -34,11 +34,12 @@ struct MKRImageView: View {
         } else {
             ZStack {
                 EmptyImageView()
-                Image(systemName: "photo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(edge: configuration.placeholderImageSize)
-                    .foregroundColor(.pink.opacity(0.5))
+                LinearGradient.kingGradient.mask {
+                    Image(systemName: "photo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(edge: configuration.placeholderImageSize)
+                }
             }
         }
     }

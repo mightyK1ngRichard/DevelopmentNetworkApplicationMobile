@@ -40,7 +40,9 @@ private extension AuthorView {
                 .font(.caption)
             
             Button {
-                isSubscribe.toggle()
+                withAnimation {
+                    isSubscribe.toggle()
+                }
                 
             } label: {
                 Label {
