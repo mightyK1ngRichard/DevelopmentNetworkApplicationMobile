@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailCityView: View {
     
-    var city   : CityModel = .data
+    var city   : CityModel
     var author : AuthorModel = .data
     var hadler : MKREmptyBlock?
     
@@ -38,6 +38,7 @@ struct DetailCityView: View {
                 .cornerRadius(15)
             }
         }
+        .navigationBarTitle(Text(""), displayMode: .inline)
     }
 }
 
@@ -135,9 +136,7 @@ private extension CityModel {
 
 // MARK: - Preview
 
-struct DetailCityView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailCityView()
-            .preferredColorScheme(.dark)
-    }
+#Preview {
+    DetailCityView(city: .data, author: .data)
+        .preferredColorScheme(.dark)
 }

@@ -71,6 +71,7 @@ private extension AuthorView {
                 .background(
                     Circle()
                         .fill(Color.backgroundColor)
+                        .frame(width: .imageSize + 10, height: .imageSize + 10)
                 )
                 .offset(y: -.imageOffset)
         }
@@ -78,6 +79,7 @@ private extension AuthorView {
 }
 
 // MARK: - MKRImageView Configuration
+
 private extension MKRImageView.Configuration {
     
     static func imageConfiguration(author: AuthorModel) -> Self {

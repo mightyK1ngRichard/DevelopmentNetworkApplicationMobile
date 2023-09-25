@@ -20,9 +20,12 @@ struct MainView: View {
                     let cityWidth = proxy.size.width  / .divider - .gridSpacer / .divider - .borderWidth * 4
                     ScrollView(showsIndicators: false) {
                         AuthorsScroll()
+                        Divider()
+                            .foregroundStyle(.foreground)
                         CitiesScroll(cityWidth)
                     }
                 }
+                .navigationTitle("Викинги")
             }
         }
         .onAppear(perform: FetchData)
@@ -98,7 +101,7 @@ private extension MainView {
 private extension MainView {
     func FetchData() {
         let group = DispatchGroup()
-        
+        var flag = false
         DispatchQueue.global(qos: .userInitiated).async {
             group.enter()
             NetworkService.shared.request(
@@ -108,7 +111,6 @@ private extension MainView {
                 parameters: nil) { result in
                     switch result {
                     case .success(let city):
-                        showAlert.show = false
                         viewModel.cityViewModel = city.mapper
                         group.leave()
                     case .failure(let error):
@@ -128,7 +130,6 @@ private extension MainView {
                 parameters: nil) { result in
                     switch result {
                     case .success(let authors):
-                        showAlert.show = false
                         viewModel.authorViewModel = authors.mapper
                         group.leave()
                     case .failure(let error):
@@ -140,7 +141,7 @@ private extension MainView {
         }
         
         group.notify(queue: .main) {
-            print("Get both")
+            showAlert.show = false
         }
     }
 }
@@ -220,28 +221,31 @@ private extension CGFloat {
 
 // MARK: - Preview
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-            .preferredColorScheme(.dark)
-            .environmentObject(MainViewModel())
-    }
+#Preview {
+    MainView()
+        .preferredColorScheme(.dark)
+        .environmentObject(MainViewModel())
 }
 
 // MARK: - Test data
 
 private extension CityViewModel {
     
-    static let description = "Просто какой-то набор слов для описания такого города. Правда надо просто что-то очень много и много писать, но я не могу понять, что я ещё могу придумать для такого города. Ладно, пофиг. Крч вот тычка тычка тычка, карта карта, сююююда, мурлок и победа. СИИИИИУ"
-    
+    static let description = """
+    Гарри Джеймс Поттер родился 31 июля 1980 года у волшебников Джеймса и Лили Поттеров. После рождения сына семья жила в укрытии, поскольку стало известно, что лорд Волан-де-Морт охотится за Гарри (см. «Пророчество»). Они жили в Годриковой впадине под защитой заклинания Фиделиус. Лучший друг Джеймса Поттера Сириус Блэк являлся крёстным отцом Гарри, и вначале планировали сделать хранителем его, но, по совету самого Сириуса, в последний момент и тайком ото всех сделали им Питера Петтигрю, который, как они считали, мог вызвать меньше подозрений. В этом была их фатальная ошибка, так как Петтигрю к этому моменту переметнулся к Волан-де-Морту. Он выдал место, где прятались Джеймс и Лили, Тёмному Лорду и тем обрёк их на смерть, а заодно и подставил Сириуса Блэка, который стал в глазах всех предателем.
+
+    Вечером 31 октября 1981 года Тёмный Лорд появился в Годриковой впадине, чтобы убить Гарри. Джеймс пытался защитить семью, но погиб. Когда Волан-де-Морт уже собрался убить ребёнка, Лили встала на его пути, закрывая своим телом кроватку малыша. Безоружная, она кричала, что пусть лучше Тёмный Лорд убьёт её, а не сына. Волан-де-Морт, который сначала собирался оставить Лили в живых по просьбе Северуса Снегга, убил её, устраняя препятствие. Как он думал. Но магический контракт был произнесён и заключён, (убив Лили, Тёмный Лорд согласился с условиями этого контракта) и подписан материнской кровью, которую он пролил. Своею смертью Лили создала несокрушимый барьер для своего сына. И когда Волан-де-Морт применил убивающее заклятие к ребёнку, оно отразилось от него, и Волан-де-Морт потерял всю свою силу и исчез. Так Гарри стал единственным, кому удалось испытать на себе заклятье Авада Кедавра и выжить после этого. На память о событиях в Годриковой Впадине ему остался только шрам в виде молнии.
+    """
+
     static let data = CityViewModel(cities: [
-        CityModel(id: 0, cityName: "Просто город 1", imageURL: nil, description: description),
-        CityModel(id: 1, cityName: "Просто город 2", imageURL: nil, description: description),
-        CityModel(id: 2, cityName: "Просто город 3", imageURL: nil, description: description),
-        CityModel(id: 3, cityName: "Просто город 4", imageURL: nil, description: description),
-        CityModel(id: 4, cityName: "Просто город 5", imageURL: nil, description: description),
-        CityModel(id: 5, cityName: "Просто город 6", imageURL: nil, description: description),
-        CityModel(id: 6, cityName: "Просто город 7", imageURL: nil, description: description),
+        CityModel(id: 0, cityName: "Просто город 1", imageURL: .spider2, description: description),
+        CityModel(id: 1, cityName: "Просто город 2", imageURL: .spider3, description: description),
+        CityModel(id: 2, cityName: "Просто город 3", imageURL: .mockDragonUrl, description: description),
+        CityModel(id: 3, cityName: "Просто город 4", imageURL: .spider1, description: description),
+        CityModel(id: 4, cityName: "Просто город 5", imageURL: .spider3, description: description),
+        CityModel(id: 5, cityName: "Просто город 6", imageURL: .spider2, description: description),
+        CityModel(id: 6, cityName: "Просто город 7", imageURL: .spider1, description: description),
+        CityModel(id: 7, cityName: "Просто город 8", imageURL: .mockDragonUrl, description: description),
     ])
 }
 
@@ -249,11 +253,11 @@ private extension AuthorViewModel {
     
     static let data = AuthorViewModel(authors: [
         AuthorModel(id: 0, authorName: "mightyKingRichard", post: "Директор", imageURL: .mockLoadingUrl),
-        AuthorModel(id: 1, authorName: "king", post: "Директор", imageURL: nil),
-        AuthorModel(id: 2, authorName: "legend", post: "Директор", imageURL: nil),
-        AuthorModel(id: 3, authorName: "richard", post: "Директор", imageURL: nil),
-        AuthorModel(id: 4, authorName: "poly", post: "Директор", imageURL: nil),
-        AuthorModel(id: 5, authorName: "mark", post: "Директор", imageURL: nil),
+        AuthorModel(id: 1, authorName: "king", post: "Директор", imageURL: .spider2),
+        AuthorModel(id: 2, authorName: "legend", post: "Директор", imageURL: .spider3),
+        AuthorModel(id: 3, authorName: "richard", post: "Директор", imageURL: .spider1),
+        AuthorModel(id: 4, authorName: "poly", post: "Директор", imageURL: .spider1),
+        AuthorModel(id: 5, authorName: "mark", post: "Директор", imageURL: .spider1),
         AuthorModel(id: 6, authorName: "blackElshad", post: "Директор", imageURL: nil),
         AuthorModel(id: 7, authorName: "aosimo", post: "Директор", imageURL: nil),
     ])

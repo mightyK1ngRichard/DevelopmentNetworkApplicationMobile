@@ -72,20 +72,55 @@ private extension MKRImageView {
 
 struct MKRImage_Previews: PreviewProvider {
     static var previews: some View {
-        MKRImageView(configuration:
-                .basic(
-                    kind: .custom(
-                        url: nil,
-                        mode: .fill,
-                        imageSize: .init(width: 300, height: 200),
-                        imageCornerRadius: 20,
-                        imageBorderWidth: 2,
-                        imageBorderColor: .pink,
-                        placeholderLineWidth: 2,
-                        placeholderImageSize: 30
+        Group {
+            MKRImageView(configuration:
+                    .basic(
+                        kind: .custom(
+                            url: .mockDragonUrl,
+                            mode: .fill,
+                            imageSize: .init(width: 300, height: 200),
+                            imageCornerRadius: 20,
+                            imageBorderWidth: 2,
+                            imageBorderColor: .pink,
+                            placeholderLineWidth: 2,
+                            placeholderImageSize: 30
+                        )
                     )
-                )
-        )
+            )
+            .previewDisplayName("Default")
+
+            MKRImageView(configuration:
+                    .basic(
+                        kind: .custom(
+                            url: nil,
+                            mode: .fill,
+                            imageSize: .init(width: 300, height: 200),
+                            imageCornerRadius: 20,
+                            imageBorderWidth: 2,
+                            imageBorderColor: .pink,
+                            placeholderLineWidth: 2,
+                            placeholderImageSize: 30
+                        )
+                    )
+            )
+            .previewDisplayName("Image is nil")
+
+            MKRImageView(configuration:
+                    .basic(
+                        kind: .custom(
+                            url: nil,
+                            mode: .fill,
+                            imageSize: .init(width: 300, height: 300),
+                            imageCornerRadius: 150,
+                            imageBorderWidth: 2,
+                            imageBorderColor: .pink,
+                            placeholderLineWidth: .zero,
+                            placeholderImageSize: .zero
+                        )
+                    )
+            )
+            .previewDisplayName("Circle")
+        }
         .preferredColorScheme(.dark)
     }
 }
