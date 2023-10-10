@@ -39,5 +39,5 @@ private extension String {
     
     static let baseUrl = "http://localhost:7070/api/v3"
     static let cities = "/cities"
-    static let authors = "/authors"
+    static let authors = "/users"
 }

@@ -9,6 +9,10 @@ import Foundation
 
 struct AuthorsEntity: Decodable {
     let authors: [AuthorEntity]
+
+    enum CodingKeys: String, CodingKey {
+        case authors = "users"
+    }
 }
 
 struct AuthorEntity: Decodable {
@@ -17,6 +21,12 @@ struct AuthorEntity: Decodable {
     let profession : String?
     let birthday   : String?
     let imageURL   : String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, profession, birthday
+        case authorName = "user_name"
+        case imageURL = "image_url"
+    }
 }
 
 extension AuthorsEntity {

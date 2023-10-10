@@ -101,7 +101,6 @@ private extension MainView {
 private extension MainView {
     func FetchData() {
         let group = DispatchGroup()
-        var flag = false
         DispatchQueue.global(qos: .userInitiated).async {
             group.enter()
             NetworkService.shared.request(
