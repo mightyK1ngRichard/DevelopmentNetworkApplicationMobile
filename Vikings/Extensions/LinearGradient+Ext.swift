@@ -24,4 +24,12 @@ extension LinearGradient {
         startPoint: .leading,
         endPoint: .bottom
     )
+
+    static let white = LinearGradient(
+        colors: [
+            .white
+        ],
+        startPoint: .leading,
+        endPoint: .bottom
+    )
 }

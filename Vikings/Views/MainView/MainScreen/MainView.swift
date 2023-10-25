@@ -7,23 +7,81 @@
 
 import SwiftUI
 
+class ScreenMode: ObservableObject {
+    @Published var currentScreen = 0
+}
+
 struct MainView: View {
     @StateObject var viewModel = MainViewModel()
+    @StateObject var currentScreen = ScreenMode()
     @State private var showAlert = (show: false, message: "")
-    
+    @State private var pullRequest = (needStart: false, isStart: false)
+    @State private var offsetY: CGFloat = 0 {
+        didSet {
+            if !pullRequest.needStart && pullRequest.isStart && offsetY == 0 {
+                pullRequest.isStart = false
+            }
+        }
+    }
+
     var body: some View {
         NavigationStack {
+            switch currentScreen.currentScreen {
+            case 0:
+                MainViewList()
+            case 1:
+                FollowingList()
+            
+            case 2:
+                PersonCabinet()
+            default:
+                MainViewList()
+            }
+        }
+        .overlay(alignment: .bottom) {
+            if !showAlert.show {
+                TabBarView()
+                    .offset(y: 1)
+                    .environmentObject(currentScreen)
+            }
+        }
+        .ignoresSafeArea()
+    }
+}
+
+// MARK: - MainView
+
+private extension MainView {
+
+    @ViewBuilder
+    func MainViewList() -> some View {
+        VStack {
             if showAlert.show {
                 NotConnectedView(errorMessage: showAlert.message, handler: FetchData)
             } else {
                 GeometryReader { proxy in
                     let cityWidth = proxy.size.width  / .divider - .gridSpacer / .divider - .borderWidth * 4
-                    ScrollView(showsIndicators: false) {
-                        AuthorsScroll()
-                        Divider()
-                            .foregroundStyle(.foreground)
-                        CitiesScroll(cityWidth)
+                    if pullRequest.needStart {
+                        ProgressView()
+                            .frame(maxWidth: .infinity, alignment: .center)
                     }
+
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            AuthorsScroll()
+                            Divider()
+                                .foregroundStyle(.foreground)
+                            CitiesScroll(cityWidth)
+                        }
+                        .offset(coordingateSpace: .named("SCROLL")) { offset in
+                            pullRequest.needStart = offset > 72
+                            offsetY = offset
+                            if !pullRequest.isStart && pullRequest.needStart {
+                                FetchData()
+                            }
+                        }
+                    }
+                    .coordinateSpace(name: "SCROLL")
                 }
                 .navigationTitle("Викинги")
             }
@@ -32,8 +90,6 @@ struct MainView: View {
         .environmentObject(viewModel)
     }
 }
-
-// MARK: - MainView
 
 private extension MainView {
     
@@ -99,7 +155,12 @@ private extension MainView {
 // MARK: - Network
 
 private extension MainView {
+
     func FetchData() {
+        print("FETCH")
+        if pullRequest.needStart {
+            pullRequest.isStart = true
+        }
         let group = DispatchGroup()
         DispatchQueue.global(qos: .userInitiated).async {
             group.enter()
@@ -140,6 +201,7 @@ private extension MainView {
         }
         
         group.notify(queue: .main) {
+            pullRequest.needStart = false
             showAlert.show = false
         }
     }
@@ -197,13 +259,6 @@ private extension String {
     static let emptyCity = "Название отсутсвует"
 }
 
-private extension Text {
-    
-    static let errorMessage = Text("Ошибка")
-    static let tryAgain = Text("Повторить")
-    static let ok = Text("ОК")
-}
-
 private extension CGFloat {
     
     static let widthCard: CGFloat = 100
@@ -224,6 +279,7 @@ private extension CGFloat {
     MainView()
         .preferredColorScheme(.dark)
         .environmentObject(MainViewModel())
+        .environmentObject(ScreenMode())
 }
 
 // MARK: - Test data

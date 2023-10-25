@@ -25,8 +25,8 @@ struct NotConnectedView: View {
                 handler?()
             }, label: {
                 Text("Повторить")
+                    .foregroundStyle(.white)
                     .font(.system(size: 18, design: .rounded))
-                    .foregroundStyle(.foreground)
                     .padding(.vertical, 10)
                     .frame(maxWidth: .infinity)
                     .background(

@@ -31,4 +31,21 @@ extension View {
         self
             .frame(maxWidth: .infinity, alignment: .leading)
     }
+
+    @ViewBuilder
+    func offset(
+        coordingateSpace: CoordinateSpace,
+        completion: @escaping (CGFloat) -> Void
+    ) -> some View {
+        self.overlay {
+            GeometryReader { proxy in
+                let minY = proxy.frame(in: coordingateSpace).minY
+                Color.clear
+                    .preference(key: OffsetKey.self, value: minY)
+                    .onPreferenceChange(OffsetKey.self) { value in
+                        completion(value)
+                    }
+            }
+        }
+    }
 }
