@@ -29,12 +29,12 @@ struct NavigationBar: View {
                     .padding(15)
                     .zIndex(0)
                 }
-                .offset(coordingateSpace: .named("SCROLL")) { offset in
+                .offset(coordingateSpace: .named(String.scrollView)) { offset in
                     offsetY = offset
                     showSearcBar = (-offset > 80) && showSearcBar
                 }
             }
-            .coordinateSpace(name: "SCROLL")
+            .coordinateSpace(name: String.scrollView)
             .ignoresSafeArea(.container , edges: .top)
         }
     }
@@ -188,4 +188,11 @@ struct NavigationBar: View {
 
 #Preview {
     NavigationBar()
+}
+
+// MARK: - Constants
+
+private extension String {
+
+    static let scrollView = "SCROLLVIEW"
 }

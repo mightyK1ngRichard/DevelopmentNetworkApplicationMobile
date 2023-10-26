@@ -28,7 +28,6 @@ struct NetworkService {
                 guard var urlComponents = URLComponents(string: urlString) else { throw APIError.badParameters }
                 urlComponents.queryItems = params.map { URLQueryItem(name: $0, value: "\($1)") }
                 request.url = urlComponents.url
-                
             case .post:
                 do {
                     let bodyData = try JSONSerialization.data(withJSONObject: params)

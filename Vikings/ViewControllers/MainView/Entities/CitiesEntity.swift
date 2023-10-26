@@ -8,10 +8,10 @@
 import Foundation
 
 struct CitiesEntity: Decodable {
-    var cities: [CitiyEntity]
+    var cities: [CityEntity]
 }
 
-struct CitiyEntity: Decodable {
+struct CityEntity: Decodable {
     var id: UInt
     var cityName: String?
     var statusID: UInt
@@ -26,6 +26,14 @@ struct CitiyEntity: Decodable {
     }
 }
 
+// MARK: - Mappers
+
+extension CityEntity {
+
+    var mapper: CityModel {
+        CityModel(id: id, cityName: cityName, imageURL: imageURL?.toURL, description: description)
+    }
+}
 
 extension CitiesEntity {
     

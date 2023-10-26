@@ -10,6 +10,7 @@ import Foundation
 class MainViewModel: ObservableObject {
     @Published var cityViewModel = CityViewModel()
     @Published var authorViewModel = AuthorViewModel()
+    @Published var currentUser = AuthorModel()
 }
 
 // MARK: View Models

@@ -42,3 +42,15 @@ extension AuthorsEntity {
         )
     }
 }
+
+extension AuthorEntity {
+
+    var mapper: AuthorModel {
+        AuthorModel(
+            id: id,
+            authorName: authorName ?? "",
+            post: profession,
+            imageURL: imageURL?.toURL
+        )
+    }
+}

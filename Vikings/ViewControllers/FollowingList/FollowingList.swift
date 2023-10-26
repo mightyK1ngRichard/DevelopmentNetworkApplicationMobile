@@ -9,21 +9,69 @@ import SwiftUI
 
 struct FollowingList: View {
     @StateObject var viewModel = FollowerViewModel()
+    @EnvironmentObject var mainViewModel: MainViewModel
 
     var body: some View {
-        GeometryReader { proxy in
-            let width = proxy.size.width
-            ScrollView {
-                VStack {
-                    ForEach(viewModel.hikesViewModel.hikes) { hike in
-                        HikeView(hike: hike, width: width)
+        MainView
+            .onAppear {
+                FetchData()
+                // viewModel.hikesViewModel = .mockModel
+            }
+    }
+
+    @ViewBuilder
+    private var MainView: some View {
+        if viewModel.hikesViewModel.hikes.isEmpty {
+            Text("Empty data")
+        } else {
+            GeometryReader { proxy in
+                let width = proxy.size.width
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        ForEach(viewModel.hikesViewModel.hikes) { hike in
+                            HikeView(hike: hike, width: width)
+                        }
+                    }
+                    .environmentObject(viewModel)
+                    .padding(.bottom, 50)
+                }
+            }
+        }
+    }
+
+    private func FetchData() {
+        if mainViewModel.currentUser.id == 0 {
+            mainViewModel.currentUser.id = 1
+        }
+        NetworkService.shared.request(
+            router: .userSubscriptions,
+            method: .get,
+            type: UserSubscriptionsEntity.self,
+            parameters: ["user_id": mainViewModel.currentUser.id]
+        ) { result in
+            switch result {
+            case .success(let userSubscriptions):
+                NetworkService.shared.request(
+                    router: .hikes,
+                    method: .get,
+                    type: HikesEntity.self,
+                    parameters: nil
+                ) { result in
+                    switch result {
+                    case .success(var hikes):
+                        print(userSubscriptions.subscriptionsIdArray)
+                        hikes.hikes = hikes.hikes.filter {
+                            userSubscriptions.subscriptionsIdArray.contains($0.user_id)
+                        }
+//                        viewModel.hikesViewModel = .mockModel
+                        viewModel.hikesViewModel = hikes.mapper
+//                        print(viewModel.hikesViewModel.hikes)
+                    case .failure(let error):
+                        print(error)
                     }
                 }
-                .environmentObject(viewModel)
-                .onAppear {
-                    viewModel.hikesViewModel = .mockModel
-                }
-                .padding(.bottom, 50)
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -33,6 +81,7 @@ struct FollowingList: View {
 
 #Preview {
     FollowingList()
+        .environmentObject(MainViewModel())
         .environmentObject(FollowerViewModel())
 }
 

@@ -12,6 +12,8 @@ import Foundation
 enum Router {
     case cities
     case authors
+    case userSubscriptions
+    case hikes
 }
 
 // MARK: METHODs
@@ -29,6 +31,8 @@ extension Router {
         switch self {
         case .cities: return .baseUrl + .cities
         case .authors: return .baseUrl + .authors
+        case .userSubscriptions: return .baseUrl + .userSubscriptions
+        case .hikes: return .baseUrl + .hikes
         }
     }
 }
@@ -40,4 +44,6 @@ private extension String {
     static let baseUrl = "http://localhost:7070/api/v3"
     static let cities = "/cities"
     static let authors = "/users"
+    static let userSubscriptions = "/users/user-subscriptions"
+    static let hikes = "/hikes"
 }

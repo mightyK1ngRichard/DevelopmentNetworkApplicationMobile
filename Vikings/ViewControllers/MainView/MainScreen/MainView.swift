@@ -13,7 +13,6 @@ class ScreenMode: ObservableObject {
 
 struct MainView: View {
     @StateObject var viewModel = MainViewModel()
-    @StateObject var currentScreen = ScreenMode()
     @State private var showAlert = (show: false, message: "")
     @State private var pullRequest = (needStart: false, isStart: false)
     @State private var offsetY: CGFloat = 0 {
@@ -24,28 +23,47 @@ struct MainView: View {
         }
     }
 
+    @State private var activeTab: Tab = .photos
+    @State private var allTabs: [AnimatedTab] = Tab.allCases.compactMap {
+        AnimatedTab(tab: $0)
+    }
+
     var body: some View {
-        NavigationStack {
-            switch currentScreen.currentScreen {
-            case 0:
-                MainViewList()
-            case 1:
-                FollowingList()
-            
-            case 2:
-                PersonCabinet()
-            default:
-                MainViewList()
+        VStack(spacing: 0) {
+            TabView(selection: $activeTab) {
+                NavigationStack {
+                    MainViewList()
+                }
+                .setUpTab(.photos)
+
+                NavigationStack {
+                    FollowingList()
+                }
+                .setUpTab(.chat)
+
+                NavigationStack {
+                    VStack {
+
+                    }
+                    .navigationTitle(Tab.apps.title)
+                }
+                .setUpTab(.apps)
+
+                NavigationStack {
+                    VStack {
+
+                    }
+                    .navigationTitle(Tab.notifications.title)
+                }
+                .setUpTab(.notifications)
+
+                NavigationStack {
+                    PersonCabinet()
+                }
+                .setUpTab(.profile)
             }
+            CustomTabBar()
         }
-        .overlay(alignment: .bottom) {
-            if !showAlert.show {
-                TabBarView()
-                    .offset(y: 1)
-                    .environmentObject(currentScreen)
-            }
-        }
-        .ignoresSafeArea()
     }
 }
 
@@ -102,13 +120,16 @@ private extension MainView {
                         AuthorView(author: author)
                     } label: {
                         AuthorCircle(
-                            username: author.authorName,
+                            username: author.id == viewModel.currentUser.id
+                            ? .yourName
+                            : author.authorName,
                             imageConfiguration: .authorImageConfiguration(url: author.imageURL)
                         )
                     }
                 }
             }
             .padding(.vertical, .lineWidth * 2)
+            .padding(.horizontal)
         }
     }
     
@@ -191,6 +212,13 @@ private extension MainView {
                     switch result {
                     case .success(let authors):
                         viewModel.authorViewModel = authors.mapper
+                        guard let currentUser = viewModel.authorViewModel.authors.first else {
+                            showAlert.message = "Не найден текущий пользователь"
+                            showAlert.show = true
+                            group.leave()
+                            return
+                        }
+                        viewModel.currentUser = currentUser
                         group.leave()
                     case .failure(let error):
                         showAlert.message = error.localizedDescription
@@ -247,20 +275,62 @@ private extension MKRImageView.Configuration {
     }
 }
 
+// MARK: - Custom Bar
+
+private extension MainView {
+
+    @ViewBuilder
+    func CustomTabBar() -> some View {
+        HStack(spacing: 0) {
+            ForEach($allTabs) { $animatedTab in
+                let tab = animatedTab.tab
+                VStack(spacing: 4) {
+                    Image(systemName: tab.rawValue)
+                        .font(.title2)
+                        .symbolEffect(.bounce.down.byLayer, value: animatedTab.isAnimating)
+
+                    Text(tab.title)
+                        .font(.caption2)
+                        .textScale(.secondary)
+                }
+                .frame(maxWidth: .infinity)
+                .foregroundStyle(activeTab == tab ? Color.primary : Color.gray.opacity(0.8))
+                .padding(.top, 5)
+//                .padding(.bottom, 10)
+                .contentShape(.rect)
+                .onTapGesture {
+                    withAnimation(.bouncy, completionCriteria: .logicallyComplete) {
+                        activeTab = tab
+                        animatedTab.isAnimating = true
+                    } completion: {
+                        var trasnaction = Transaction()
+                        trasnaction.disablesAnimations = true
+                        withTransaction(trasnaction) {
+                            animatedTab.isAnimating = nil
+                        }
+                    }
+                }
+            }
+        }
+        .background(.bar)
+    }
+}
+
 // MARK: - Constants
 
 private extension CGSize {
-    
+
     static let imageSize = CGSize(edge: 82)
 }
 
 private extension String {
-    
+
     static let emptyCity = "Название отсутсвует"
+    static let yourName = "Вы"
 }
 
 private extension CGFloat {
-    
+
     static let widthCard: CGFloat = 100
     static let divider: CGFloat = 2
     static let gridSpacer: CGFloat = 5

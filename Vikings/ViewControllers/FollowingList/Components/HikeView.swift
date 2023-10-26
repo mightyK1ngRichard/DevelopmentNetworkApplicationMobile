@@ -16,12 +16,12 @@ struct HikeView: View {
     var body: some View {
         VStack {
             AvatarView()
-
+            Divider()
             Text(hike.hikeName)
-                .font(.system(size: 30, weight: .semibold, design: .rounded))
+                .font(.system(size: 25, weight: .semibold, design: .rounded))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading)
-
+            
             Text("Дата начала похода: \(hike.dateStartHike)")
                 .font(.system(size: 11, weight: .light, design: .rounded))
                 .foregroundStyle(.secondary)
@@ -75,17 +75,18 @@ private extension HikeView {
     @ViewBuilder
     func ScrollViewCitiew(width: CGFloat) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
+            HStack(spacing: 16) {
                 ForEach(hike.destinationHikes) { dh in
                     ZStack(alignment: .bottom) {
                         MKRImageView(
                             configuration: .init(
                                 url: dh.city.imageURL,
-                                imageSize: CGSize(edge: width - 20),
-                                imageCornerRadius: 20,
+                                imageSize: CGSize(width: width - 30, height: width * 0.5),
+                                imageCornerRadius: 10,
                                 placeholderImageSize: 40
                             )
                         )
+
                         VStack {
                             Text(dh.city.cityName ?? "Город без названия")
                                 .font(
@@ -97,10 +98,11 @@ private extension HikeView {
                                 )
 
                             Text("Город № \(dh.serialNumber)")
+                                .font(.footnote)
                         }
                         .frame(maxWidth: .infinity)
-                        .background()
-                        .cornerRadius(20)
+                        .background(.black.opacity(0.6))
+                        .cornerRadius(10)
                     }
                 }
             }
