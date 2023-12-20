@@ -12,7 +12,7 @@
 		2C0B7A512ABA532300023836 /* AuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B7A502ABA532300023836 /* AuthorView.swift */; };
 		2C0DD06B2AE9BA9D00CFDCD1 /* ShimmerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DD06A2AE9BA9D00CFDCD1 /* ShimmerButton.swift */; };
 		2C0DD06E2AE9BFDE00CFDCD1 /* AnimatedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DD06D2AE9BFDE00CFDCD1 /* AnimatedTabBar.swift */; };
-		2C2288DC2AEC66B4006BA0A9 /* TestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2288DB2AEC66B4006BA0A9 /* TestCard.swift */; };
+		2C2288DC2AEC66B4006BA0A9 /* ScrollCellsWithEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2288DB2AEC66B4006BA0A9 /* ScrollCellsWithEffect.swift */; };
 		2C256E962AB2423D00498901 /* VikingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C256E952AB2423D00498901 /* VikingsApp.swift */; };
 		2C256E982AB2423D00498901 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C256E972AB2423D00498901 /* MainView.swift */; };
 		2C256E9A2AB2423D00498901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C256E992AB2423D00498901 /* Assets.xcassets */; };
@@ -49,7 +49,6 @@
 		2CD79BA02AB78B65005CB758 /* ConfigurationRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD79B9F2AB78B65005CB758 /* ConfigurationRequirements.swift */; };
 		2CD79BA42AB793FF005CB758 /* CGSize+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD79BA32AB793FF005CB758 /* CGSize+Ext.swift */; };
 		2CD79BA92AB79FFF005CB758 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD79BA82AB79FFF005CB758 /* MainViewModel.swift */; };
-		2CEBF8F12AEB086400D1F1BC /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEBF8F02AEB086400D1F1BC /* Test.swift */; };
 		2CEBF8F32AEB15F000D1F1BC /* UserSubscriptionsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEBF8F22AEB15F000D1F1BC /* UserSubscriptionsEntity.swift */; };
 		2CEFA34C2AE8FD2D00DA5353 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEFA34B2AE8FD2D00DA5353 /* TabBarView.swift */; };
 		2CEFA34F2AE9082100DA5353 /* PersonCabinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEFA34E2AE9082100DA5353 /* PersonCabinet.swift */; };
@@ -62,7 +61,7 @@
 		2C0B7A502ABA532300023836 /* AuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorView.swift; sourceTree = "<group>"; };
 		2C0DD06A2AE9BA9D00CFDCD1 /* ShimmerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerButton.swift; sourceTree = "<group>"; };
 		2C0DD06D2AE9BFDE00CFDCD1 /* AnimatedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTabBar.swift; sourceTree = "<group>"; };
-		2C2288DB2AEC66B4006BA0A9 /* TestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCard.swift; sourceTree = "<group>"; };
+		2C2288DB2AEC66B4006BA0A9 /* ScrollCellsWithEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollCellsWithEffect.swift; sourceTree = "<group>"; };
 		2C256E922AB2423D00498901 /* Vikings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vikings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C256E952AB2423D00498901 /* VikingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VikingsApp.swift; sourceTree = "<group>"; };
 		2C256E972AB2423D00498901 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -100,7 +99,6 @@
 		2CD79B9F2AB78B65005CB758 /* ConfigurationRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRequirements.swift; sourceTree = "<group>"; };
 		2CD79BA32AB793FF005CB758 /* CGSize+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Ext.swift"; sourceTree = "<group>"; };
 		2CD79BA82AB79FFF005CB758 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		2CEBF8F02AEB086400D1F1BC /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		2CEBF8F22AEB15F000D1F1BC /* UserSubscriptionsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSubscriptionsEntity.swift; sourceTree = "<group>"; };
 		2CEFA34B2AE8FD2D00DA5353 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		2CEFA34E2AE9082100DA5353 /* PersonCabinet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCabinet.swift; sourceTree = "<group>"; };
@@ -169,9 +167,6 @@
 				2CD79B952AB76DBC005CB758 /* Molecules */,
 				2C256EA52AB242BB00498901 /* Extensions */,
 				2CD79BA12AB78EE1005CB758 /* ViewControllers */,
-				2CEBF8F02AEB086400D1F1BC /* Test.swift */,
-				2C2288DB2AEC66B4006BA0A9 /* TestCard.swift */,
-				2C530C8F2AECEEB600FF04BE /* DynamicRectangle.swift */,
 				2C530C932AECFA5300FF04BE /* Coffee */,
 			);
 			path = Vikings;
@@ -280,6 +275,17 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		2CCFCAE62B336A8D0079BB12 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				2CBD0F4D2AE9684F00DCDDB3 /* NavigationBar */,
+				2C7FC0DB2AEA9F7200220BE0 /* ImagePicker */,
+				2C2288DB2AEC66B4006BA0A9 /* ScrollCellsWithEffect.swift */,
+				2C530C8F2AECEEB600FF04BE /* DynamicRectangle.swift */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
 		2CD79B952AB76DBC005CB758 /* Molecules */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,8 +311,7 @@
 		2CD79BA12AB78EE1005CB758 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2C7FC0DB2AEA9F7200220BE0 /* ImagePicker */,
-				2CBD0F4D2AE9684F00DCDDB3 /* NavigationBar */,
+				2CCFCAE62B336A8D0079BB12 /* Playground */,
 				2CEFA3502AE90B6B00DA5353 /* FollowingList */,
 				2CEFA34D2AE9080000DA5353 /* PersonCabinet */,
 				2CEFA34A2AE8FD0100DA5353 /* TabBar */,
@@ -479,7 +484,7 @@
 				2CC4A6552AB86CB00099018F /* APIErrors.swift in Sources */,
 				2C9665382AB7D346002B800A /* MKRColors+Additions.swift in Sources */,
 				2CC4A6532AB86C9A0099018F /* Network.swift in Sources */,
-				2C2288DC2AEC66B4006BA0A9 /* TestCard.swift in Sources */,
+				2C2288DC2AEC66B4006BA0A9 /* ScrollCellsWithEffect.swift in Sources */,
 				2C3429622AE91E87000ABF55 /* HikeView.swift in Sources */,
 				2C9665312AB7BE9C002B800A /* Completions.swift in Sources */,
 				2CD79B992AB78089005CB758 /* MKRImageView.swift in Sources */,
@@ -492,7 +497,6 @@
 				2C9665362AB7D2B7002B800A /* UIColor+Ext.swift in Sources */,
 				2CD79BA02AB78B65005CB758 /* ConfigurationRequirements.swift in Sources */,
 				2C530C962AECFA7300FF04BE /* CoffeeModel.swift in Sources */,
-				2CEBF8F12AEB086400D1F1BC /* Test.swift in Sources */,
 				2CEFA34C2AE8FD2D00DA5353 /* TabBarView.swift in Sources */,
 				2C256EAB2AB24FF400498901 /* Image+Ext.swift in Sources */,
 			);

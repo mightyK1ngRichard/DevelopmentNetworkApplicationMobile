@@ -14,8 +14,8 @@ struct FollowingList: View {
     var body: some View {
         MainView
             .onAppear {
-                FetchData()
-                // viewModel.hikesViewModel = .mockModel
+//                FetchData()
+                 viewModel.hikesViewModel = .mockModel
             }
     }
 
