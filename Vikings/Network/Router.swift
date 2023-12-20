@@ -13,6 +13,7 @@ enum Router {
     case cities
     case authors
     case userSubscriptions
+    case makeSubscription
     case hikes
 }
 
@@ -33,6 +34,7 @@ extension Router {
         case .authors: return .baseUrl + .authors
         case .userSubscriptions: return .baseUrl + .userSubscriptions
         case .hikes: return .baseUrl + .hikes
+        case .makeSubscription: return .baseUrl + .makeSubscription
         }
     }
 }
@@ -45,5 +47,6 @@ private extension String {
     static let cities = "/cities"
     static let authors = "/users"
     static let userSubscriptions = "/users/user-subscriptions"
+    static let makeSubscription = "/users/makeSubscription"
     static let hikes = "/hikes"
 }

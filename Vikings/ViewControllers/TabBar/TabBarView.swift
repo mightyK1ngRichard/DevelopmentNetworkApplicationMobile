@@ -19,15 +19,13 @@ struct TabBarView: View {
         TabBarItem(id: 2, imageTitle: "person")
     ]
     @State private var selectedItem = 0
-    @EnvironmentObject var currentScreen: ScreenMode
 
     var body: some View {
         HStack {
             ForEach(buttons) { button in
                 Button {
                     selectedItem = button.id
-                    currentScreen.currentScreen = button.id
-                    print(currentScreen.currentScreen)
+
                 } label: {
                     Image(systemName: button.imageTitle)
                         .resizable()

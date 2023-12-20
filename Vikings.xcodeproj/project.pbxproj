@@ -12,6 +12,7 @@
 		2C0B7A512ABA532300023836 /* AuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B7A502ABA532300023836 /* AuthorView.swift */; };
 		2C0DD06B2AE9BA9D00CFDCD1 /* ShimmerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DD06A2AE9BA9D00CFDCD1 /* ShimmerButton.swift */; };
 		2C0DD06E2AE9BFDE00CFDCD1 /* AnimatedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DD06D2AE9BFDE00CFDCD1 /* AnimatedTabBar.swift */; };
+		2C2288DC2AEC66B4006BA0A9 /* TestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2288DB2AEC66B4006BA0A9 /* TestCard.swift */; };
 		2C256E962AB2423D00498901 /* VikingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C256E952AB2423D00498901 /* VikingsApp.swift */; };
 		2C256E982AB2423D00498901 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C256E972AB2423D00498901 /* MainView.swift */; };
 		2C256E9A2AB2423D00498901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C256E992AB2423D00498901 /* Assets.xcassets */; };
@@ -24,6 +25,9 @@
 		2C3429622AE91E87000ABF55 /* HikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3429612AE91E87000ABF55 /* HikeView.swift */; };
 		2C3A41772ABCC22200A2016E /* NotConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3A41762ABCC22200A2016E /* NotConnectedView.swift */; };
 		2C5022A62AE980E80080595F /* PreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5022A52AE980E80080595F /* PreferenceKey.swift */; };
+		2C530C902AECEEB600FF04BE /* DynamicRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C530C8F2AECEEB600FF04BE /* DynamicRectangle.swift */; };
+		2C530C922AECFA4A00FF04BE /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C530C912AECFA4A00FF04BE /* Coffee.swift */; };
+		2C530C962AECFA7300FF04BE /* CoffeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C530C952AECFA7300FF04BE /* CoffeeModel.swift */; };
 		2C7FC0DD2AEA9F8100220BE0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC0DC2AEA9F8100220BE0 /* ImagePicker.swift */; };
 		2C9665312AB7BE9C002B800A /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9665302AB7BE9C002B800A /* Completions.swift */; };
 		2C9665342AB7C865002B800A /* DetailCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9665332AB7C865002B800A /* DetailCityView.swift */; };
@@ -58,6 +62,7 @@
 		2C0B7A502ABA532300023836 /* AuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorView.swift; sourceTree = "<group>"; };
 		2C0DD06A2AE9BA9D00CFDCD1 /* ShimmerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerButton.swift; sourceTree = "<group>"; };
 		2C0DD06D2AE9BFDE00CFDCD1 /* AnimatedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTabBar.swift; sourceTree = "<group>"; };
+		2C2288DB2AEC66B4006BA0A9 /* TestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCard.swift; sourceTree = "<group>"; };
 		2C256E922AB2423D00498901 /* Vikings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vikings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C256E952AB2423D00498901 /* VikingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VikingsApp.swift; sourceTree = "<group>"; };
 		2C256E972AB2423D00498901 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -71,6 +76,9 @@
 		2C3429612AE91E87000ABF55 /* HikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikeView.swift; sourceTree = "<group>"; };
 		2C3A41762ABCC22200A2016E /* NotConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotConnectedView.swift; sourceTree = "<group>"; };
 		2C5022A52AE980E80080595F /* PreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKey.swift; sourceTree = "<group>"; };
+		2C530C8F2AECEEB600FF04BE /* DynamicRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicRectangle.swift; sourceTree = "<group>"; };
+		2C530C912AECFA4A00FF04BE /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
+		2C530C952AECFA7300FF04BE /* CoffeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeModel.swift; sourceTree = "<group>"; };
 		2C7FC0DC2AEA9F8100220BE0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2C9665302AB7BE9C002B800A /* Completions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completions.swift; sourceTree = "<group>"; };
 		2C9665332AB7C865002B800A /* DetailCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCityView.swift; sourceTree = "<group>"; };
@@ -162,6 +170,9 @@
 				2C256EA52AB242BB00498901 /* Extensions */,
 				2CD79BA12AB78EE1005CB758 /* ViewControllers */,
 				2CEBF8F02AEB086400D1F1BC /* Test.swift */,
+				2C2288DB2AEC66B4006BA0A9 /* TestCard.swift */,
+				2C530C8F2AECEEB600FF04BE /* DynamicRectangle.swift */,
+				2C530C932AECFA5300FF04BE /* Coffee */,
 			);
 			path = Vikings;
 			sourceTree = "<group>";
@@ -215,6 +226,15 @@
 				2C3429612AE91E87000ABF55 /* HikeView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		2C530C932AECFA5300FF04BE /* Coffee */ = {
+			isa = PBXGroup;
+			children = (
+				2C530C912AECFA4A00FF04BE /* Coffee.swift */,
+				2C530C952AECFA7300FF04BE /* CoffeeModel.swift */,
+			);
+			path = Coffee;
 			sourceTree = "<group>";
 		};
 		2C7FC0DB2AEA9F7200220BE0 /* ImagePicker */ = {
@@ -434,6 +454,7 @@
 				2CC4A6572AB86CC80099018F /* Router.swift in Sources */,
 				2C0DD06B2AE9BA9D00CFDCD1 /* ShimmerButton.swift in Sources */,
 				2CD79BA42AB793FF005CB758 /* CGSize+Ext.swift in Sources */,
+				2C530C902AECEEB600FF04BE /* DynamicRectangle.swift in Sources */,
 				2CD79B942AB7648A005CB758 /* View+Ext.swift in Sources */,
 				2C0DD06E2AE9BFDE00CFDCD1 /* AnimatedTabBar.swift in Sources */,
 				2CB0CD4C2AB93788009662CE /* CitiesEntity.swift in Sources */,
@@ -452,11 +473,13 @@
 				2C34295D2AE91C40000ABF55 /* FollowerViewModel.swift in Sources */,
 				2CC4A6592AB86D3F0099018F /* String+Ext.swift in Sources */,
 				2CD79B922AB76302005CB758 /* AuthorCircle.swift in Sources */,
+				2C530C922AECFA4A00FF04BE /* Coffee.swift in Sources */,
 				2C5022A62AE980E80080595F /* PreferenceKey.swift in Sources */,
 				2C256EA92AB24C0500498901 /* LinearGradient+Ext.swift in Sources */,
 				2CC4A6552AB86CB00099018F /* APIErrors.swift in Sources */,
 				2C9665382AB7D346002B800A /* MKRColors+Additions.swift in Sources */,
 				2CC4A6532AB86C9A0099018F /* Network.swift in Sources */,
+				2C2288DC2AEC66B4006BA0A9 /* TestCard.swift in Sources */,
 				2C3429622AE91E87000ABF55 /* HikeView.swift in Sources */,
 				2C9665312AB7BE9C002B800A /* Completions.swift in Sources */,
 				2CD79B992AB78089005CB758 /* MKRImageView.swift in Sources */,
@@ -468,6 +491,7 @@
 				2CEFA3522AE90B7B00DA5353 /* FollowingList.swift in Sources */,
 				2C9665362AB7D2B7002B800A /* UIColor+Ext.swift in Sources */,
 				2CD79BA02AB78B65005CB758 /* ConfigurationRequirements.swift in Sources */,
+				2C530C962AECFA7300FF04BE /* CoffeeModel.swift in Sources */,
 				2CEBF8F12AEB086400D1F1BC /* Test.swift in Sources */,
 				2CEFA34C2AE8FD2D00DA5353 /* TabBarView.swift in Sources */,
 				2C256EAB2AB24FF400498901 /* Image+Ext.swift in Sources */,

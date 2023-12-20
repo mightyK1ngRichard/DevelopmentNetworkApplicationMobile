@@ -50,7 +50,7 @@ private extension HikeView {
 
     func AvatarView() -> some View {
         HStack {
-            MKRImageView(configuration: .authorImageConfiguration(url: .mockLoadingUrl))
+            MKRImageView(configuration: .authorImageConfiguration(url: hike.author.imageURL))
             VStack {
                 Text(hike.author.authorName)
                     .font(.headline)

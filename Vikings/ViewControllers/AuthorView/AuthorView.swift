@@ -10,7 +10,8 @@ import SwiftUI
 struct AuthorView: View {
     var author: AuthorModel!
     @State private var isSubscribe = false
-    
+    @EnvironmentObject var mainViewModel: MainViewModel
+
     var body: some View {
         GeometryReader {
             let width = $0.size.width
@@ -22,6 +23,9 @@ struct AuthorView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            isSubscribe = mainViewModel.currentUserSupliers.contains(Int(author.id))
+        }
     }
 }
 
@@ -40,9 +44,7 @@ private extension AuthorView {
                 .font(.caption)
             
             Button {
-                withAnimation {
-                    isSubscribe.toggle()
-                }
+                MakeSubscription()
                 
             } label: {
                 Label {
@@ -108,6 +110,33 @@ private extension MKRImageView.Configuration {
     }
 }
 
+// MARK: - Network
+
+private extension AuthorView {
+
+    func MakeSubscription() {
+        NetworkService.shared.request(
+            router: .makeSubscription,
+            method: .post,
+            type: CityEntity.self,
+            parameters: [
+                "user_id": mainViewModel.currentUser.id,
+                "subscription_id": author.id
+            ]
+        ) { result in
+            switch result {
+            case .success(let result):
+                print(result)
+                withAnimation {
+                    isSubscribe.toggle()
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+}
 // MARK: - Constants
 
 private extension AuthorModel {
@@ -140,4 +169,5 @@ private extension Color {
 
 #Preview {
     AuthorView(author: .data)
+        .environmentObject(MainViewModel())
 }

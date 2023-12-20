@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PersonCabinet: View {
-    var author: AuthorModel = .data
     @State private var isSubscribe = false
+    @EnvironmentObject var mainViewModel: MainViewModel
 
     var body: some View {
         GeometryReader {
@@ -34,9 +34,9 @@ private extension PersonCabinet {
             Spacer()
                 .frame(height: .imageSize / 2)
 
-            Text(author.authorName)
+            Text(mainViewModel.currentUser.authorName)
                 .font(.system(size: 23, weight: .heavy, design: .rounded))
-            Text(author.post ?? .noPost)
+            Text(mainViewModel.currentUser.post ?? .noPost)
                 .font(.caption)
         }
         .frame(maxWidth: .infinity)
@@ -44,7 +44,7 @@ private extension PersonCabinet {
         .background(Color.backgroundColor)
         .cornerRadius(20)
         .overlay(alignment: .top) {
-            MKRImageView(configuration: .imageConfiguration(author: author))
+            MKRImageView(configuration: .imageConfiguration(author: mainViewModel.currentUser))
                 .padding(.imagePadding)
                 .background(
                     Circle()
@@ -117,5 +117,6 @@ private extension Color {
 // MARK: - Preview
 
 #Preview {
-    PersonCabinet(author: .data)
+    PersonCabinet()
+        .environmentObject(MainViewModel())
 }

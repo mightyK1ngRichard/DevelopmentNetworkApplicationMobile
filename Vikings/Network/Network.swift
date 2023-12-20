@@ -18,14 +18,16 @@ struct NetworkService {
         parameters: [String: Any]?
     ) throws -> URLRequest {
         let urlString = router.endpoint
-        guard let url = urlString.toURL else { throw URLError(.badURL) }
-        
+        guard let url = urlString.toURL else { 
+            throw URLError(.badURL) }
+
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         if let params = parameters {
             switch method {
             case .get:
-                guard var urlComponents = URLComponents(string: urlString) else { throw APIError.badParameters }
+                guard var urlComponents = URLComponents(string: urlString) else { 
+                    throw APIError.badParameters }
                 urlComponents.queryItems = params.map { URLQueryItem(name: $0, value: "\($1)") }
                 request.url = urlComponents.url
             case .post:

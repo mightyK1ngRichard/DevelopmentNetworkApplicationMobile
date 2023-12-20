@@ -40,9 +40,6 @@ struct FollowingList: View {
     }
 
     private func FetchData() {
-        if mainViewModel.currentUser.id == 0 {
-            mainViewModel.currentUser.id = 1
-        }
         NetworkService.shared.request(
             router: .userSubscriptions,
             method: .get,
@@ -59,13 +56,11 @@ struct FollowingList: View {
                 ) { result in
                     switch result {
                     case .success(var hikes):
-                        print(userSubscriptions.subscriptionsIdArray)
+                        mainViewModel.currentUserSupliers = userSubscriptions.subscriptionsIdArray
                         hikes.hikes = hikes.hikes.filter {
                             userSubscriptions.subscriptionsIdArray.contains($0.user_id)
                         }
-//                        viewModel.hikesViewModel = .mockModel
                         viewModel.hikesViewModel = hikes.mapper
-//                        print(viewModel.hikesViewModel.hikes)
                     case .failure(let error):
                         print(error)
                     }
@@ -81,7 +76,7 @@ struct FollowingList: View {
 
 #Preview {
     FollowingList()
-        .environmentObject(MainViewModel())
+        .environmentObject(MainViewModel.MockData())
         .environmentObject(FollowerViewModel())
 }
 
@@ -131,4 +126,14 @@ private extension HikesViewModel {
             ]
         )
     ])
+}
+
+private extension MainViewModel {
+
+    static func MockData() -> MainViewModel {
+        let mockData = MainViewModel()
+        mockData.currentUserSupliers = [2, 3]
+        mockData.currentUser = .init(id: 1, authorName: "", post: nil, imageURL: nil)
+        return mockData
+    }
 }

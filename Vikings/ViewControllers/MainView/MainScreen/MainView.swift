@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-class ScreenMode: ObservableObject {
-    @Published var currentScreen = 0
-}
-
 struct MainView: View {
     @StateObject var viewModel = MainViewModel()
     @State private var showAlert = (show: false, message: "")
@@ -64,6 +60,7 @@ struct MainView: View {
             }
             CustomTabBar()
         }
+        .environmentObject(viewModel)
     }
 }
 
@@ -227,7 +224,29 @@ private extension MainView {
                     }
                 }
         }
-        
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            group.enter()
+            NetworkService.shared.request(
+                router: .userSubscriptions,
+                method: .get,
+                type: UserSubscriptionsEntity.self,
+                parameters: ["user_id": viewModel.currentUser.id]
+            ) { result in
+                switch result {
+                case .success(let userSubscriptions):
+                    viewModel.currentUserSupliers = userSubscriptions.subscriptionsIdArray
+                    showAlert.show = false
+                    group.leave()
+
+                case .failure(let error):
+                    showAlert.message = error.localizedDescription
+                    showAlert.show = true
+                    group.leave()
+                }
+            }
+        }
+
         group.notify(queue: .main) {
             pullRequest.needStart = false
             showAlert.show = false
@@ -349,7 +368,6 @@ private extension CGFloat {
     MainView()
         .preferredColorScheme(.dark)
         .environmentObject(MainViewModel())
-        .environmentObject(ScreenMode())
 }
 
 // MARK: - Test data

@@ -30,10 +30,51 @@ struct ImagePickerForPriview: View {
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker() { image in
                     self.image = image
-                    print(image)
+                    uploadImage(image: image)
                 }
             }
         }
+    }
+
+    func uploadImage(image: UIImage) {
+        guard let url = URL(string: "http://localhost:7070/api/v3/cities/upload-image") else {
+            print("URL is invalid")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let body = NSMutableData()
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"city_id\"\r\n\r\n".data(using: .utf8)!)
+        body.append("12".data(using: .utf8)!)
+        body.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"file\"; filename=\"image.jpg\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+
+        if let imageData = image.jpegData(compressionQuality: 0.1) {
+            body.append(imageData)
+        } else {
+            print("Failed to get image data")
+            return
+        }
+
+        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+
+        request.httpBody = body as Data
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            if let data = data {
+                let response = String(data: data, encoding: .utf8) ?? ""
+                print("Response: \(response)")
+            }
+        }.resume()
     }
 }
 
